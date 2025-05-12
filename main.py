@@ -13,8 +13,10 @@ game = game.Game()
 screen = game.terrain.fenetre
 
 running=True
-terrain=game.terrain.generer_terrain()[0]
+info_terrain=game.terrain.generer_terrain()
+terrain=info_terrain[0]
 game.terrain.choix_couleur()
+fonction=game.terrrain.fonctions()
 while running:
 
     # Dessin du terrain
@@ -34,10 +36,13 @@ while running:
 
     if game.pressed.get(pygame.K_RIGHT)and game.player.rect.x<900:
         game.player.move_right()
-        game.player.move_up(game.player.rect.x)
+
+
+
     elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x>0:
         game.player.move_left()
-        game.player.move_up(game.player.rect.x)
+
+
 
     p.display.flip()
 
