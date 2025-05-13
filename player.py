@@ -1,6 +1,6 @@
 import pygame as p
 import math as m
-import terrain
+import game_file
 
 
 class Player(p.sprite.Sprite):
@@ -11,11 +11,14 @@ class Player(p.sprite.Sprite):
         self.max_health = 100
         self.velocity = 1
         self.image =p.image.load('image/tank.png')
+        self.image_og=self.image
+        self.image=self.image
         self.rect = self.image.get_rect()
-        self.rect.x = 100
+        self.rect.x = 0
         self.rect.y = 440
         self.image = p.transform.scale(self.image,(100,50))
-        self.orientation=0
+        self.terrain=None
+
 
 
     def move_right(self):
@@ -27,8 +30,8 @@ class Player(p.sprite.Sprite):
     def rotate(self,pente):
         """Fait pivoter l'objet autour de son centre."""
         angle_radians = m.atan(pente)
-        self.image = p.transform.rotate(self.image, m.degrees(-angle_radians))
+        self.image = p.transform.rotate(self.image_og, m.degrees(-angle_radians))
         self.rect = self.image.get_rect(center=self.rect.center)
 
-    def move_up(self,x):
-        self.rect.y += x
+    def move_up(self):
+        self.rect.y = self.terrain(self.rect.x)[0]-40
