@@ -2,6 +2,7 @@ import pygame
 import pygame as p
 import game_file
 import random
+import time as t
 
 p.init()
 
@@ -21,6 +22,7 @@ terrain=game.terrain.generer_terrain()
 game.player.rect.y=fonction(0)[0]-40
 game.terrain.choix_couleur()
 while running:
+    t.sleep(0.005)
 
     # Dessin du terrain
 
@@ -43,12 +45,12 @@ while running:
     if game.pressed.get(pygame.K_RIGHT)and game.player.rect.x<960:
         game.player.move_right()
         game.player.move_up()
-        game.player.rotate(fonction(game.player.rect.x+50)[1])
+        game.player.rotate(fonction(game.player.rect.x-60+game.terrain.offset)[1])
 
     elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x>0:
         game.player.move_left()
         game.player.move_up()
-        game.player.rotate(fonction(game.player.rect.x+50)[1])
+        game.player.rotate(fonction(game.player.rect.x-50+game.terrain.offset)[1])
 
     p.display.flip()
 

@@ -11,6 +11,7 @@ class Terrain:
         self.hauteur_fenetre=720
         self.fenetre=pygame.display.set_mode((self.largeur, self.hauteur_fenetre))
         self.fonction=None
+        self.offset = 0
 
 
     def choix_couleur(self):
@@ -38,7 +39,17 @@ class Terrain:
             return self.hauteur_terrain + 50*m.sin(x/49)+42*m.cos(x/42-400)+46*m.sin(x/80),50/49*m.cos(x/49)-m.sin(x/49)+46/80*m.sin(x/80)
         def f6(x):
             return self.hauteur_terrain + 60*m.cos(x*0.004)+14*m.sin(x/52),-60*0.004*m.sin(x*0.004)+14/52*m.cos(x/52)
-        self.fonction=random.choice([f1,f2,f4,f5,f6])
+        """self.fonction=random.choice([f1,f2,f4,f5,f6])"""
+        self.fonction = f6
+        if self.fonction==f2:
+            self.offset=57
+        if self.fonction==f5:
+            self.offset=-5
+        if self.fonction==f6:
+            self.offset=20
+
+
+        print(self.fonction)
 
     def generer_terrain(self):
         terrain = [0] * self.largeur
