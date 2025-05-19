@@ -2,6 +2,7 @@ import pygame
 import pygame as p
 import game_file
 import random
+import time as t
 
 p.init()
 
@@ -13,14 +14,19 @@ game = game_file.Game()
 screen = game.terrain.fenetre
 game.terrain.fonctions()
 fonction=game.terrain.fonction
-game.player.terrain=game.terrain.fonction
+game.player1.terrain=game.terrain.fonction
+game.player2.terrain=game.terrain.fonction
 
 running=True
 
 terrain=game.terrain.generer_terrain()
-game.player.rect.y=fonction(0)[0]-40
+game.player1.rect.x=0
+game.player1.rect.y=fonction(0)[0]-40
+game.player2.rect.x=960
+game.player2.rect.y=fonction(960)[0]-40
 game.terrain.choix_couleur()
 while running:
+    t.sleep(0.005)
 
     # Dessin du terrain
 
@@ -37,18 +43,25 @@ while running:
     points.append((0, game.terrain.hauteur_fenetre))
     pygame.draw.polygon(screen, game.terrain.couleur_sol, points)
 
-    screen.blit(game.player.image,game.player.rect)
+    screen.blit(game.player1.image,game.player1.rect)
+    screen.blit(game.player2.image,game.player2.rect)
 
 
-    if game.pressed.get(pygame.K_RIGHT)and game.player.rect.x<960:
-        game.player.move_right()
-        game.player.move_up()
-        game.player.rotate(fonction(game.player.rect.x+50)[1])
+    if game.pressed.get(pygame.K_RIGHT)and game.player1.rect.x<960 :
+        game.playerjoueur.move_right()
+        game.playerjoueur.move_up()
+        game.playerjoueur.rotate(fonction(game.player1.rect.x-60+game.terrain.offset)[1])
+        game.playerjoueur.conso(1)
 
-    elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x>0:
-        game.player.move_left()
-        game.player.move_up()
-        game.player.rotate(fonction(game.player.rect.x+50)[1])
+    elif game.pressed.get(pygame.K_LEFT) and game.player1.rect.x>0 :
+        game.playerjoueur.move_left()
+        game.playerjoueur.move_up()
+        game.playerjoueur.rotate(fonction(game.player1.rect.x-50+game.terrain.offset)[1])
+        game.playerjoueur.conso(2)
+
+
+    if game.playerjoueur.essence<=0:
+        game.tour()
 
     p.display.flip()
 
