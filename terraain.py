@@ -9,19 +9,8 @@ class Terrain:
         self.hauteur_terrain=450
         self.largeur= 1080
         self.hauteur_fenetre=720
-        self.x = 0
         self.fenetre=pygame.display.set_mode((self.largeur, self.hauteur_fenetre))
 
-    def choix_couleur(self):
-        vert = (34, 139, 34)
-        marron = (139, 69, 19)
-        bleu = (135, 206, 235)
-        bleu_moins_bleu = (160, 180, 200)
-
-        couleurs_sol = [vert, marron]
-        couleurs_ciel = [bleu, bleu_moins_bleu]
-        self.couleur_ciel = random.choice(couleurs_ciel)
-        self.couleur_sol = random.choice(couleurs_sol)
 
     def generer_fonctions_hauteur(self):
         """Génère une liste de fonctions de hauteur."""
@@ -48,34 +37,4 @@ class Terrain:
         return [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
 
 
-    def generer_terrain(self):
-        terrain = [0] * self.largeur
-        nb_segments = 5
-        largeur_segment = self.largeur // nb_segments
-        fonction=self.generer_fonctions_hauteur()
-        liste_segment=[]
-        liste_dep_arr=[]
-        for i in range(nb_segments):
-            fonction_final = random.choice(fonction)
-            liste_segment.append(fonction_final)
-            debut_x = i * largeur_segment
-            fin_x = (i + 1) * largeur_segment if i < nb_segments - 1 else self.largeur
 
-            local_x=0
-            liste_dep_arr.append((debut_x,fin_x))
-            for x in range(debut_x, fin_x):
-                terrain[x] = fonction_final(local_x)
-                local_x+= 1
-
-        # Lissage plus doux pour encore plus d'arrondi
-        terrain_lisse = []
-        taille_fenetre = 20
-        for i in range(self.largeur):
-            debut = max(0, i - taille_fenetre)
-            fin = min(self.largeur, i + taille_fenetre + 1)
-            total = sum(terrain[debut:fin])
-            nb = fin - debut
-            moyenne = total / nb
-            terrain_lisse.append(moyenne)
-
-        return terrain_lisse,liste_segment,liste_dep_arr

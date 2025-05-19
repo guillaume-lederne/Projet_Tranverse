@@ -1,6 +1,6 @@
 import pygame as p
 import math as m
-import game_file
+
 
 
 class Player(p.sprite.Sprite):
@@ -11,12 +11,13 @@ class Player(p.sprite.Sprite):
         self.max_health = 100
         self.velocity = 1
         self.image =p.image.load('image/tank.png')
+        self.image = p.transform.scale(self.image,(100,50))
         self.image_og=self.image
         self.image=self.image
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = 440
-        self.image = p.transform.scale(self.image,(100,50))
+
         self.terrain=None
 
 

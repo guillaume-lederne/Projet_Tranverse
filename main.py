@@ -43,12 +43,12 @@ while running:
     if game.pressed.get(pygame.K_RIGHT)and game.player.rect.x<960:
         game.player.move_right()
         game.player.move_up()
-
+        game.player.rotate(fonction(game.player.rect.x+50)[1])
 
     elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x>0:
         game.player.move_left()
         game.player.move_up()
-
+        game.player.rotate(fonction(game.player.rect.x+50)[1])
 
     p.display.flip()
 
