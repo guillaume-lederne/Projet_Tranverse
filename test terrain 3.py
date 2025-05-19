@@ -69,3 +69,4 @@ while jeu_actif:
     pygame.display.flip()
 
 pygame.quit()
+
