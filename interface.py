@@ -1,50 +1,38 @@
 import pygame
 pygame.init()
 from tkinter import *
-class MyWindow(Tk):
+master = Tk()
 
-    def __init__(self):
-        Tk.__init__(self)
-        self.create_menu_bar()
+import tkinter as tk
+from PIL import Image, ImageTk
 
-        self.geometry("1080x720")
-        self.title("Jeu du Tank")
+def lancer_jeu():
+    print("Lancement du jeu...")
 
-    def create_menu_bar(self):
-        menu_bar = Menu(self)
+def ouvrir_options():
+    print("Ouverture des options...")
 
-        menu_file = Menu(menu_bar, tearoff=0)
-        menu_file.add_command(label="New", command=self.do_something)
-        menu_file.add_command(label="Open", command=self.open_file)
-        menu_file.add_command(label="Save", command=self.do_something)
-        menu_file.add_separator()
-        menu_file.add_command(label="Exit", command=self.quit)
-        menu_bar.add_cascade(label="File", menu=menu_file)
+# Création de la fenêtre
+root = tk.Tk()
+root.title("Menu du Jeu")
+root.geometry("1184x672")
+root.resizable(False, False)
 
-        menu_edit = Menu(menu_bar, tearoff=0)
-        menu_edit.add_command(label="Undo", command=self.do_something)
-        menu_edit.add_separator()
-        menu_edit.add_command(label="Copy", command=self.do_something)
-        menu_edit.add_command(label="Cut", command=self.do_something)
-        menu_edit.add_command(label="Paste", command=self.do_something)
-        menu_bar.add_cascade(label="Edit", menu=menu_edit)
+# Chargement de l'image de fond
+bg_image = Image.open("Image_Menu.jpeg")
+bg_photo = ImageTk.PhotoImage(bg_image)
 
-        menu_help = Menu(menu_bar, tearoff=0)
-        menu_help.add_command(label="About", command=self.do_about)
-        menu_bar.add_cascade(label="Help", menu=menu_help)
+# Canvas pour afficher l'image de fond
+canvas = tk.Canvas(root, width=1184, height=672)
+canvas.pack(fill="both", expand=True)
+canvas.create_image(0, 0, image=bg_photo, anchor="nw")
 
-        self.config(menu=menu_bar)
+# Ajout des boutons (positions ajustées à la main)
+btn_jouer = tk.Button(root, text="Jouer", command=lancer_jeu, font=("Helvetica", 14, "bold"), bg="#d9b44a")
+btn_options = tk.Button(root, text="Options", command=ouvrir_options, font=("Helvetica", 14, "bold"), bg="#d9b44a")
 
-    def open_file(self):
-        file = askopenfilename(title="Choose the file to open",
-                               filetypes=[("PNG image", ".png"), ("GIF image", ".gif"), ("All files", ".*")])
-        print(file)
+# Positionnement sur le Canvas (ajuste selon l’image)
+canvas.create_window(592, 310, window=btn_jouer)    # Coordonnée x, y centrée sur bouton Jouer
+canvas.create_window(592, 390, window=btn_options)  # Coordonnée x, y centrée sur bouton Options
 
-    def do_something(self):
-        print("Menu clicked")
-
-    def do_about(self):
-        messagebox.showinfo("My title", "My message")
-
-
-
+root.mainloop()
