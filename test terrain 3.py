@@ -70,3 +70,4 @@ while jeu_actif:
 
 pygame.quit()
 
+
