@@ -13,14 +13,15 @@ def affichage_icone():
     selection_window.geometry("400x300")
 
     # Tank image paths
-    tank1_path = "tank_rouge.png"
-    tank2_path = "tank_vert.png"
+    tank1_path = "image/tank_rouge.png"
+    tank2_path = "image/tank_vert.png."
 
+    taille_image=(100,100)
     # Load and display Tank 1
     try:
-        tank1_image = Image.open(tank1_path)
+        tank1_image = Image.open(tank1_path).resize(taille_image)
         tank1_photo = ImageTk.PhotoImage(tank1_image)
-        btn_tank1 = Button(selection_window, image=tank1_photo, command=lambda: selection_tank("Tank 1"), borderwidth=0)
+        btn_tank1 = Button(selection_window, image=tank1_photo, command=lambda: selection_tank("Tank Rouge"), borderwidth=0)
         btn_tank1.image = tank1_photo
         btn_tank1.pack(side="left", padx=20, pady=20)
     except FileNotFoundError:
@@ -28,9 +29,9 @@ def affichage_icone():
 
     # Load and display Tank 2
     try:
-        tank2_image = Image.open(tank2_path)
+        tank2_image = Image.open(tank2_path).resize(taille_image)
         tank2_photo = ImageTk.PhotoImage(tank2_image)
-        btn_tank2 = Button(selection_window, image=tank2_photo, command=lambda: selection_tank("Tank 2"), borderwidth=0)
+        btn_tank2 = Button(selection_window, image=tank2_photo, command=lambda: selection_tank("Tank Vert"), borderwidth=0)
         btn_tank2.image = tank2_photo
         btn_tank2.pack(side="right", padx=20, pady=20)
     except FileNotFoundError:
