@@ -2,7 +2,6 @@ import pygame
 pygame.init()
 from tkinter import *
 master = Tk()
-
 import tkinter as tk
 from PIL import Image, ImageTk
 
@@ -18,21 +17,24 @@ root.title("Menu du Jeu")
 root.geometry("1184x672")
 root.resizable(False, False)
 
-# Chargement de l'image de fond
-bg_image = Image.open("Image_Menu.jpeg")
-bg_photo = ImageTk.PhotoImage(bg_image)
+# Charger l'image depuis un fichier existant
+image_path = "asset/Image_Menu.jpeg"
+image = Image.open(image_path)
+photo = ImageTk.PhotoImage(image)
 
-# Canvas pour afficher l'image de fond
-canvas = tk.Canvas(root, width=1184, height=672)
-canvas.pack(fill="both", expand=True)
-canvas.create_image(0, 0, image=bg_photo, anchor="nw")
+# Créer un label avec l'image de fond
+background_label = tk.Label(root, image=photo)
+background_label.image = photo  # 🔥 Ne surtout pas oublier cette ligne
+background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-# Ajout des boutons (positions ajustées à la main)
+# Boutons
 btn_jouer = tk.Button(root, text="Jouer", command=lancer_jeu, font=("Helvetica", 14, "bold"), bg="#d9b44a")
 btn_options = tk.Button(root, text="Options", command=ouvrir_options, font=("Helvetica", 14, "bold"), bg="#d9b44a")
 
-# Positionnement sur le Canvas (ajuste selon l’image)
-canvas.create_window(592, 310, window=btn_jouer)    # Coordonnée x, y centrée sur bouton Jouer
-canvas.create_window(592, 390, window=btn_options)  # Coordonnée x, y centrée sur bouton Options
+# Positionnement des boutons (ajuste à ton image)
+btn_jouer.place(x=510, y=300, width=160, height=50)
+btn_options.place(x=510, y=380, width=160, height=50)
 
+# Lancement de la boucle
 root.mainloop()
+
