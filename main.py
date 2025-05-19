@@ -25,6 +25,7 @@ game.player1.rect.y=fonction(0)[0]-40
 game.player2.rect.x=960
 game.player2.rect.y=fonction(960)[0]-40
 game.terrain.choix_couleur()
+
 while running:
     t.sleep(0.005)
 
@@ -47,21 +48,21 @@ while running:
     screen.blit(game.player2.image,game.player2.rect)
 
 
-    if game.pressed.get(pygame.K_RIGHT)and game.player1.rect.x<960 :
-        game.playerjoueur.move_right()
-        game.playerjoueur.move_up()
-        game.playerjoueur.rotate(fonction(game.player1.rect.x-60+game.terrain.offset)[1])
-        game.playerjoueur.conso(1)
+    if game.pressed.get(pygame.K_RIGHT)and game.playerJoueur.rect.x<960 :
+        game.playerJoueur.move_right()
+        game.playerJoueur.move_up()
+        game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-60+game.terrain.offset)[1])
+        game.playerJoueur.conso(1)
+        if game.playerJoueur.essence <= 0:
+            game.tour()
 
-    elif game.pressed.get(pygame.K_LEFT) and game.player1.rect.x>0 :
-        game.playerjoueur.move_left()
-        game.playerjoueur.move_up()
-        game.playerjoueur.rotate(fonction(game.player1.rect.x-50+game.terrain.offset)[1])
-        game.playerjoueur.conso(2)
-
-
-    if game.playerjoueur.essence<=0:
-        game.tour()
+    elif game.pressed.get(pygame.K_LEFT) and game.playerJoueur.rect.x>0 :
+        game.playerJoueur.move_left()
+        game.playerJoueur.move_up()
+        game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-50+game.terrain.offset)[1])
+        game.playerJoueur.conso(2)
+        if game.playerJoueur.essence <= 0:
+            game.tour()
 
     p.display.flip()
 
