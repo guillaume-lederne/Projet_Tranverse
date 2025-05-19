@@ -42,15 +42,29 @@ while running:
     screen.blit(game.player.image,game.player.rect)
 
 
-    if game.pressed.get(pygame.K_RIGHT)and game.player.rect.x<960:
+    if game.pressed.get(pygame.K_RIGHT)and game.player.rect.x<960 and game.player.essence>=0:
         game.player.move_right()
         game.player.move_up()
         game.player.rotate(fonction(game.player.rect.x-60+game.terrain.offset)[1])
+        angle_conso = game.player.angle
+        if angle_conso<-1:
+            angle_conso=-1
+        if angle_conso>1:
+            angle_conso=1
+        game.player.essence -= (1-angle_conso)*3
+        print(game.player.essence)
 
-    elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x>0:
+    elif game.pressed.get(pygame.K_LEFT) and game.player.rect.x>0 and game.player.essence>=0:
         game.player.move_left()
         game.player.move_up()
         game.player.rotate(fonction(game.player.rect.x-50+game.terrain.offset)[1])
+        angle_conso = game.player.angle
+        if angle_conso < -1:
+            angle_conso = -1
+        if angle_conso > 1:
+            angle_conso = 1
+        game.player.essence -= (1 + angle_conso) * 3
+        print(game.player.essence)
 
     p.display.flip()
 

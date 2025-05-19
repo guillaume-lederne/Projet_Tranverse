@@ -9,6 +9,8 @@ class Player(p.sprite.Sprite):
         super().__init__()
         self.health = 100
         self.max_health = 100
+        self.max_essence = 1000
+        self.essence = 1000
         self.velocity = 1
         self.image =p.image.load('image/tank.png')
         self.image = p.transform.scale(self.image,(100,50))
@@ -17,6 +19,7 @@ class Player(p.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 0
         self.rect.y = 440
+        self.angle = 0
 
         self.terrain=None
 
@@ -31,6 +34,7 @@ class Player(p.sprite.Sprite):
     def rotate(self,pente):
         """Fait pivoter l'objet autour de son centre."""
         angle_radians = m.atan(pente)
+        self.angle = angle_radians
         self.image = p.transform.rotate(self.image_og, m.degrees(-angle_radians))
         self.rect = self.image.get_rect(center=self.rect.center)
 
