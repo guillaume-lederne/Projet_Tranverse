@@ -51,4 +51,3 @@ class Player(p.sprite.Sprite):
             self.essence -= (1 - angle_conso) * 3
         elif sens == 2:
             self.essence -= (1 + angle_conso) * 3
-        print(self.essence)

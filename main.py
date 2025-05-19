@@ -1,9 +1,12 @@
 import pygame
 import pygame as p
+pygame.init()
 import game_file
 import random
 import time as t
-
+fenetre = pygame.display.set_mode((1080, 720))
+police1 = pygame.font.Font(None,30)
+police2 = pygame.font.Font(None,38)
 p.init()
 
 p.display.set_caption('WWI')
@@ -63,6 +66,15 @@ while running:
     if game.playerjoueur.essence<=0:
         game.tour()
 
+    text_essence_1 = police1.render(f"Essence : {round(game.player1.essence/10,1)} L", True,(0,0,0))
+    text_essence_2 = police1.render(f"Essence : {round(game.player2.essence / 10, 1)} L", True, (0, 0, 0))
+    if game.tour_du_joueur == 1:
+        text_tour = police2.render(f"Tour du joueur {1}", True, (0, 0, 0))
+    elif game.tour_du_joueur == 2:
+        text_tour = police2.render(f"Tour du joueur {2}", True, (0, 0, 0))
+    fenetre.blit(text_essence_1,(20,20))
+    fenetre.blit(text_essence_2, (900, 20))
+    fenetre.blit(text_tour, (430, 20))
     p.display.flip()
 
     for event in p.event.get():
