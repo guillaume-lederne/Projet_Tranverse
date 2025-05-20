@@ -6,17 +6,18 @@ class Game:
     def __init__(self):
         self.player1 = player.Player(1)
         self.player2 = player.Player(2)
-        self.playerjoueur=self.player1
+        self.playerJoueur=self.player1
         self.pressed = {}
         self.terrain=terrain_file.Terrain()
         self.fonction=self.terrain.fonction
+        self.tour_du_joueur = 1
 
     def tour(self):
-        self.playerjoueur.essence = self.playerjoueur.max_essence
-        if self.playerjoueur == self.player1:
-            self.playerjoueur = self.player2
-        elif self.playerjoueur == self.player2:
-            self.playerjoueur = self.player1
+        self.playerJoueur.essence = self.playerJoueur.max_essence
+        if self.playerJoueur == self.player1:
+            self.playerJoueur = self.player2
+        elif self.playerJoueur == self.player2:
+            self.playerJoueur = self.player1
 
 
 
