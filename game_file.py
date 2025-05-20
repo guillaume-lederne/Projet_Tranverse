@@ -4,6 +4,8 @@ import terrain_file
 
 class Game:
     def __init__(self):
+        self.largeur = 1080
+        self.hauteur = 720
         self.player1 = player.Player(1)
         self.player2 = player.Player(2)
         self.playerJoueur=self.player1

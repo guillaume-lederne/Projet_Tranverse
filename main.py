@@ -4,15 +4,17 @@ pygame.init()
 import game_file
 import random
 import time as t
-fenetre = pygame.display.set_mode((1080, 720))
 police1 = pygame.font.Font(None,30)
 police2 = pygame.font.Font(None,38)
 p.init()
-
 p.display.set_caption('WWI')
 
 
 game = game_file.Game()
+fenetre = pygame.display.set_mode((game.largeur, game.hauteur))
+
+
+
 
 screen = game.terrain.fenetre
 game.terrain.fonctions()
