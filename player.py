@@ -11,7 +11,7 @@ class Player(p.sprite.Sprite):
         self.essence = 1000
         self.velocity = 1
         if joueur == 1:
-            self.image =p.image.load('image/tank.png')
+            self.image = p.image.load('image/tank.png')
         elif joueur == 2:
             self.image = p.image.load('image/tank2.png')
         self.image = p.transform.scale(self.image,(100,50))
