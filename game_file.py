@@ -2,10 +2,13 @@ import pygame as p
 import player
 import terrain_file
 import Tir
+import time as t
 
 
 class Game:
     def __init__(self):
+        self.timer = 10
+        self.time_start = t.time()
         self.largeur = 1080
         self.hauteur = 720
         self.player1 = player.Player(1)
@@ -43,5 +46,7 @@ class Game:
         print("holla")
         self.missile.tir_active = False
         self.missile.missile_x, self.missile.missile_y = -1, -1
+        self.time_start = t.time()
+        self.tour()
         return True
 
