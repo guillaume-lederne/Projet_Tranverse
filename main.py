@@ -52,8 +52,6 @@ while running:
 
     screen.blit(game.player1.image,game.player1.rect)
     screen.blit(game.player2.image,game.player2.rect)
-
-
     if game.pressed.get(pygame.K_RIGHT)and game.playerJoueur.rect.x<960 :
         game.playerJoueur.move_right()
         game.playerJoueur.move_up()
@@ -73,7 +71,7 @@ while running:
     game.missile.char_y = game.playerJoueur.rect.y
     game.missile.update(game.hauteur)
     game.missile.afficher_trajectoire(screen,game.hauteur)
-    game.missile.tirer(game.largeur, game.hauteur,screen)
+    game.missile.tirer(game.hauteur,game.largeur,screen)
     if game.tour_du_joueur == 1:
         if game.collision(game.player2.rect, game.missile.rect):
             game.player2.health -= 20

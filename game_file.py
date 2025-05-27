@@ -40,6 +40,6 @@ class Game:
             return False
         print("holla")
         self.missile.tir_active = False
-        self.missile_x, self.missile_y = -1, -1
+        self.missile.missile_x, self.missile.missile_y = -1, -1
         return True
 
