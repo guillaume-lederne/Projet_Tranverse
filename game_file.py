@@ -14,13 +14,13 @@ class Game:
         self.fonction=self.terrain.fonction
         self.tour_du_joueur = 1
 
+
     def tour(self):
         self.playerJoueur.essence = self.playerJoueur.max_essence
         if self.playerJoueur == self.player1:
             self.playerJoueur = self.player2
         elif self.playerJoueur == self.player2:
             self.playerJoueur = self.player1
-
 
 
 
