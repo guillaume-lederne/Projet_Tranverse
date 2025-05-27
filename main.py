@@ -52,7 +52,11 @@ while running:
 
     screen.blit(game.player1.image,game.player1.rect)
     screen.blit(game.player2.image,game.player2.rect)
+    screen.blit(game.player1.coeur_image,game.player1.coeur_rect)
+    screen.blit(game.player2.coeur_image, game.player2.coeur_rect)
 
+    game.player1.compt_coeur()
+    game.player2.compt_coeur()
 
     if game.pressed.get(pygame.K_RIGHT)and game.playerJoueur.rect.x<960 :
         game.playerJoueur.move_right()
@@ -89,8 +93,8 @@ while running:
         text_tour = police2.render(f"Tour du joueur {1}", True, (0, 0, 0))
     elif game.tour_du_joueur == 2:
         text_tour = police2.render(f"Tour du joueur {2}", True, (0, 0, 0))
-    fenetre.blit(text_essence_1,(20,20))
-    fenetre.blit(text_essence_2, (900, 20))
+    fenetre.blit(text_essence_1,(20,60))
+    fenetre.blit(text_essence_2, (900, 60))
     fenetre.blit(text_tour, (430, 20))
     p.display.flip()
 
