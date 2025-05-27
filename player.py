@@ -1,5 +1,6 @@
 import pygame as p
 import math as m
+import Tir
 
 class Player(p.sprite.Sprite):
 
@@ -23,7 +24,8 @@ class Player(p.sprite.Sprite):
         self.angle = 0
         self.terrain=None
 
-
+    def lauch_projectile(self, joueur):
+        missile=Tir.Missile(joueur)
 
     def move_right(self):
         self.rect.x += self.velocity
