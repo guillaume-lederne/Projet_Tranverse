@@ -29,7 +29,7 @@ background.image = photo
 background.place(x=0, y=0, relwidth=1, relheight=1)
 
 
-btn_jouer_image_path = "image/jouer_transparent.png"  # Assurez-vous que cette image existe
+btn_jouer_image_path = "image/jouer_transparent.png"
 try:
     btn_jouer_image = Image.open(btn_jouer_image_path)
     btn_jouer_photo = ImageTk.PhotoImage(btn_jouer_image)
