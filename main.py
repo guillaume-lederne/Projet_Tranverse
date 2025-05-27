@@ -79,11 +79,11 @@ while running:
     game.missile.afficher_trajectoire(screen,game.hauteur)
     game.missile.tirer(game.hauteur,game.largeur,screen)
     if game.tour_du_joueur == 1 and game.missile.tir_active:
-        if game.collision(game.player2.rect, game.missile.rect):
+        if game.collision(game.player2.rect, game.missile.rect,screen):
             game.player2.health -= 20
             game.missile.tir_active = False
     elif game.tour_du_joueur == 2 and game.missile.tir_active:
-        if game.collision(game.player1.rect,game.missile.rect):
+        if game.collision(game.player1.rect,game.missile.rect,screen):
             game.player1.health -= 20
             game.missile.tir_active = False
     if (game.missile.rect.y >= game.hauteur or game.missile.rect.x > game.largeur or game.missile.rect.x < 0 or game.missile.rect.y > game.missile.terrain(game.missile.rect.x)[0])and game.missile.tir_active == True:
