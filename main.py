@@ -7,7 +7,7 @@ import time as t
 police1 = pygame.font.Font(None,30)
 police2 = pygame.font.Font(None,38)
 p.init()
-p.display.set_caption('WWI')
+p.display.set_caption('WWIII')
 
 
 game = game_file.Game()
@@ -68,7 +68,18 @@ while running:
         game.playerJoueur.conso(2)
         if game.playerJoueur.essence <= 0:
             game.tour()
+    game.missile.char_x = game.playerJoueur.rect.x+50
+    game.missile.char_y = game.playerJoueur.rect.y+25
+    game.missile.update()
+    game.missile.afficher_trajectoire(screen)
+    game.missile.tirer(game.largeur, game.hauteur,screen)
 
+    if game.collision(game.player1,game.missile):
+        game.player1.health -= 20
+        game.missile.tir_active = False
+    if game.collision(game.player2,game.missile):
+        game.player2.health -= 20
+        game.missile.tir_active = False
     text_essence_1 = police1.render(f"Essence : {round(game.player1.essence/10,1)} L", True,(0,0,0))
     text_essence_2 = police1.render(f"Essence : {round(game.player2.essence / 10, 1)} L", True, (0, 0, 0))
     if game.tour_du_joueur == 1:
