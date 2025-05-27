@@ -17,6 +17,7 @@ class Game:
         self.fonction=self.terrain.fonction
         self.tour_du_joueur = 1
 
+
     def tour(self):
         self.playerJoueur.essence = self.playerJoueur.max_essence
         if self.playerJoueur == self.player1:
@@ -35,6 +36,7 @@ class Game:
 
         if rectB.x > rectA.x+100:
             return False
+
 
         if rectB.y > rectA.y+50:
             return False
