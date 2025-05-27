@@ -74,14 +74,15 @@ class Missile(pygame.sprite.Sprite):
 
             self.missile_y = self.char_y  # Réinitialiser la position du missile
             self.rect.y = self.missile_y
-            self.x_vals, self.y_vals = self.trajectoire(self.vitesse, self.angle,hauteur)  # Calculer la trajectoire
-            print(f"Tir effectué avec angle {self.angle:.2f}° et vitesse {self.vitesse} m/s")
+            self.x_vals, self.y_vals = self.trajectoire(self.vitesse, self.angle,hauteur)
+            #print(f"Tir effectué avec angle {self.angle:.2f}° et vitesse {self.vitesse} m/s")
 
     def afficher_trajectoire(self,screen,hauteur):
         if not self.tir_active:
             x_vals, y_vals = self.trajectoire(self.vitesse, self.angle,hauteur)  # Recalculer la trajectoire à chaque frame avant le tir
             for i in range(len(x_vals)):
                     pygame.draw.circle(screen, (0, 0, 255), (int(x_vals[i]+5 ), int(y_vals[i]+20)), 3)
+
     def tirer(self,hauteur, largeur,screen):
         if self.tir_active:
             if len(self.x_vals) > 0:

@@ -36,14 +36,18 @@ class Player(p.sprite.Sprite):
 
 
     def compt_coeur(self):
-        if self.health < 80 and self.health > 60:
-            self.coeur_image=p.coeur_image.load('image/4coeurs.png')
-        elif self.health < 60 and self.health > 40:
-            self.coeur_image=p.coeur_image.load('image/3coeurs.png')
-        elif self.health < 40 and self.health > 20:
-            self.coeur_image=p.coeur_image.load('image/2coeurs.png')
-        elif self.health < 20 and self.health > 0:
-            self.coeur_image=p.coeur_image.load('image/coeur.png')
+        if self.health <= 80 and self.health > 60:
+            self.coeur_image=p.image.load('image/4coeurs.png')
+            self.coeur_image = p.transform.scale(self.coeur_image, (120, 35))
+        elif self.health <= 60 and self.health > 40:
+            self.coeur_image=p.image.load('image/3coeurs.png')
+            self.coeur_image = p.transform.scale(self.coeur_image, (90, 35))
+        elif self.health <= 40 and self.health > 20:
+            self.coeur_image=p.image.load('image/2coeurs.png')
+            self.coeur_image = p.transform.scale(self.coeur_image, (60, 35))
+        elif self.health <= 20 and self.health > 0:
+            self.coeur_image=p.image.load('image/coeur.png')
+            self.coeur_image = p.transform.scale(self.coeur_image, (32, 35))
 
 
 
