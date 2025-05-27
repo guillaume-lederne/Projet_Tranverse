@@ -37,7 +37,6 @@ fonctions_a_choisir = [f1, f2, f3, f4, f5, f6]
 def generer_terrain():
     terrain = [0] * largeur
     fonction_final = random.choice(fonctions_a_choisir)
-
     for x in range(largeur):
         resultat = fonction_final(x)
         if isinstance(resultat, tuple):

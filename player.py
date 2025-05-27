@@ -34,6 +34,7 @@ class Player(p.sprite.Sprite):
         self.angle = 0
         self.terrain=None
 
+
     def compt_coeur(self):
         if self.health < 80 and self.health > 60:
             self.coeur_image=p.coeur_image.load('image/4coeurs.png')
@@ -45,6 +46,7 @@ class Player(p.sprite.Sprite):
             self.coeur_image=p.coeur_image.load('image/coeur.png')
 
 
+
     def move_right(self):
         self.rect.x += self.velocity
 
@@ -52,7 +54,6 @@ class Player(p.sprite.Sprite):
         self.rect.x -= self.velocity
 
     def rotate(self,pente):
-        """Fait pivoter l'objet autour de son centre."""
         angle_radians = m.atan(pente)
         self.angle = angle_radians
         self.image = p.transform.rotate(self.image_og, m.degrees(-angle_radians))
