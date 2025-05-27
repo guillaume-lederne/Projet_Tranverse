@@ -65,6 +65,7 @@ while running:
         game.playerJoueur.conso(1)
         if game.playerJoueur.essence <= 0:
             game.tour()
+#bonjour jad
 
     elif game.pressed.get(pygame.K_LEFT) and game.playerJoueur.rect.x>0 :
         game.playerJoueur.move_left()
@@ -87,7 +88,6 @@ while running:
             game.player1.health -= 20
             game.missile.tir_active = False
 
-        game.missile.tir_active = False
     text_essence_1 = police1.render(f"Essence : {round(game.player1.essence/10,1)} L", True,(0,0,0))
     text_essence_2 = police1.render(f"Essence : {round(game.player2.essence / 10, 1)} L", True, (0, 0, 0))
     if game.tour_du_joueur == 1:
