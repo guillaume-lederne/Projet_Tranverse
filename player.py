@@ -44,8 +44,6 @@ class Player(p.sprite.Sprite):
         elif self.health < 20 and self.health > 0:
             self.coeur_image=p.coeur_image.load('image/coeur.png')
 
-    def lauch_projectile(self, joueur):
-        missile=Tir.Missile(joueur)
 
     def move_right(self):
         self.rect.x += self.velocity
