@@ -27,6 +27,19 @@ class Game:
             self.playerJoueur = self.player1
 
     def collision(self,rectA, rectB):
-        return False
+        if rectB.x + 10 < rectA.x:
+            return False
 
+        if rectB.y+10 < rectA.y:
+            return False
+
+        if rectB.x > rectA.x+100:
+            return False
+
+        if rectB.y > rectA.y+50:
+            return False
+        print("holla")
+        self.missile.tir_active = False
+        self.missile_x, self.missile_y = -1, -1
+        return True
 

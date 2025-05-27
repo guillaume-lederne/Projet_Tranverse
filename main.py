@@ -21,6 +21,7 @@ game.terrain.fonctions()
 fonction=game.terrain.fonction
 game.player1.terrain=game.terrain.fonction
 game.player2.terrain=game.terrain.fonction
+game.missile.terrain=game.terrain.fonction
 
 running=True
 
@@ -69,16 +70,18 @@ while running:
         if game.playerJoueur.essence <= 0:
             game.tour()
     game.missile.char_x = game.playerJoueur.rect.x+50
-    game.missile.char_y = game.playerJoueur.rect.y+25
-    game.missile.update()
-    game.missile.afficher_trajectoire(screen)
+    game.missile.char_y = game.playerJoueur.rect.y
+    game.missile.update(game.hauteur)
+    game.missile.afficher_trajectoire(screen,game.hauteur)
     game.missile.tirer(game.largeur, game.hauteur,screen)
+    if game.tour_du_joueur == 1:
+        if game.collision(game.player2.rect, game.missile.rect):
+            game.player2.health -= 20
+    else:
+        if game.collision(game.player1.rect,game.missile.rect):
+            game.player1.health -= 20
+            game.missile.tir_active = False
 
-    if game.collision(game.player1,game.missile):
-        game.player1.health -= 20
-        game.missile.tir_active = False
-    if game.collision(game.player2,game.missile):
-        game.player2.health -= 20
         game.missile.tir_active = False
     text_essence_1 = police1.render(f"Essence : {round(game.player1.essence/10,1)} L", True,(0,0,0))
     text_essence_2 = police1.render(f"Essence : {round(game.player2.essence / 10, 1)} L", True, (0, 0, 0))
