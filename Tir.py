@@ -1,47 +1,52 @@
 import pygame
 import math
 
-class missile:
-    def __init__(self):
+class Missile(pygame.sprite.Sprite):
+    def __init__(self, joueur):
+        super().__init__()
         self.g = 9.81
         self.vitesse_initiale =50
-        self.angle_initial = 0
+        self.angle_initial = 45
         self.vitesse = self.vitesse_initiale
         self.angle = self.angle_initial
         self.char_x = 100
         self.char_y = 100
+        self.gravite=9.81
+        if joueur == 1:
+            self.image=pygame.image.load('image/balle_tank_gauche.png')
+        if joueur == 1:
+            self.image=pygame.image.load('image/balle_tank_droit.png')
+        self.rect=self.image.get_rect()
 
-    """
-    # Position du char (le point de départ du tir)
-    char_x= 100
-    char_y = hauteur - 20 # Position initiale
-    """
 
-    def trajectoire(self,v,angle_deg):
+
+# Fonction pour calculer la trajectoire
+    def trajectoire(self,v, angle_deg):
+        # Convertir l'angle en radians
         angle_rad = math.radians(angle_deg)
+
+        # Liste des coordonnées du tir
         x_vals = []
         y_vals = []
 
-        t = 0
-        dt = 0.1
+        t = 0  # Temps initial
+        dt = 0.1  # Pas de temps
 
         while True:
             x = v * math.cos(angle_rad) * t
-            y = v * math.sin(angle_rad) * t - 0.5 * self.g * t ** 2
-            if y < -50:
-                break
-            x_vals.append(x + self.char_x)
-            y_vals.append(self.char_y - y)
+            y = v * math.sin(angle_rad) * t - 0.5 * self.gravite * t ** 2
+            if y < -50 : #valeur arbitraire pour que la trajectoire calcul un point en plus et évite les problèmes de sortie d'écran
+                break # Arrêter lorsque le projectile touche le sol
+            x_vals.append(x+char_x)
+            y_vals.append(char_y - y)  # Inverser l'axe y pour l'affichage (haut/bas)
             t += dt
 
         return x_vals, y_vals
 
-"""
-    def dessiner_missile(x, y):
-        """
 
-
-
+# Position du char (le point de départ du tir)
+char_x= 100
+char_y = hauteur - 20 # Position initiale
 
 
 
@@ -80,6 +85,10 @@ while running:
         missile_y = char_y  # Réinitialiser la position du missile
         x_vals, y_vals = trajectoire(vitesse, angle)  # Calculer la trajectoire
         print(f"Tir effectué avec angle {angle:.2f}° et vitesse {vitesse} m/s")
+
+
+    # Dessiner le char
+    pygame.draw.rect(screen, (0, 0, 0), (char_x - 10, char_y - 10, 20, 20))  # Représente le char
 
     # Dessiner la trajectoire du tir avant le lancement
     if not tir_active:
