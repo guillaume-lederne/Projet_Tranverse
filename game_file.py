@@ -4,12 +4,15 @@ import terrain_file
 
 class Game:
     def __init__(self):
+        self.largeur = 1080
+        self.hauteur = 720
         self.player1 = player.Player(1)
         self.player2 = player.Player(2)
         self.playerJoueur=self.player1
         self.pressed = {}
         self.terrain=terrain_file.Terrain()
         self.fonction=self.terrain.fonction
+        self.tour_du_joueur = 1
 
     def tour(self):
         self.playerJoueur.essence = self.playerJoueur.max_essence
