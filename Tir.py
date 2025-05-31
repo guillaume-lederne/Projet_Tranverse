@@ -1,6 +1,6 @@
 import pygame
 import math
-
+import time
 
 
 class Missile(pygame.sprite.Sprite):
@@ -23,6 +23,7 @@ class Missile(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
         self.dx = 0
         self.dy = 0
+        self.shoot_delay = 0
 
 
     def trajectoire(self,v, angle_deg,hauteur):
@@ -67,7 +68,8 @@ class Missile(pygame.sprite.Sprite):
             self.vitesse = min(100, self.vitesse+1)
         if keys[pygame.K_DOWN]:
             self.vitesse = max(1, self.vitesse - 1)
-        if keys[pygame.K_SPACE] and not self.tir_active:
+        if keys[pygame.K_SPACE] and not self.tir_active and time.time() > self.shoot_delay:
+            self.shoot_delay = time.time() + 1
             self.tir_active = True
             self.missile_x = self.char_x
             self.rect.x = self.missile_x
@@ -78,9 +80,12 @@ class Missile(pygame.sprite.Sprite):
             #print(f"Tir effectué avec angle {self.angle:.2f}° et vitesse {self.vitesse} m/s")
 
     def afficher_trajectoire(self,screen,hauteur):
+        count = 50
         if not self.tir_active:
             x_vals, y_vals = self.trajectoire(self.vitesse, self.angle,hauteur)  # Recalculer la trajectoire à chaque frame avant le tir
             for i in range(len(x_vals)):
+                if count>1:
+                    count -=1
                     pygame.draw.circle(screen, (0, 0, 255), (int(x_vals[i]+5 ), int(y_vals[i]+20)), 3)
 
     def tirer(self,hauteur, largeur,screen):
@@ -95,8 +100,5 @@ class Missile(pygame.sprite.Sprite):
 
                 self.x_vals.pop(0)
                 self.y_vals.pop(0)
-
-            if self.rect.y >= hauteur  or self.rect.x > largeur or self.rect.x < 0 or self.rect.y > self.terrain(self.rect.x)[0]:
-                self.tir_active = False
 
 
