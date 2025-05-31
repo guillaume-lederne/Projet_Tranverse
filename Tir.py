@@ -19,9 +19,9 @@ class Missile(pygame.sprite.Sprite):
         self.tir_active = False
         self.missile_x, self.missile_y = -1, -1
         self.image_right=pygame.image.load('image/balle_tank_gauche.png')
-        self.image_right = pygame.transform.scale(self.image_right, (50, 50))
+        self.image_right = pygame.transform.scale(self.image_right, (35, 35))
         self.image_left=pygame.image.load('image/balle_tank_droit.png')
-        self.image_left = pygame.transform.scale(self.image_left, (50, 50))
+        self.image_left = pygame.transform.scale(self.image_left, (35, 35))
         self.image = self.image_right
         self.rect=self.image.get_rect()
         self.dx = 0
@@ -48,12 +48,11 @@ class Missile(pygame.sprite.Sprite):
             t += dt
 
         return x_vals, y_vals
-
     def dessiner_missile(self,screen,joueur):
-        if joueur == 1:
+        if self.char_x < self.missile_x:
             self.image = self.image_right
             screen.blit(self.image, self.rect)
-        if joueur == 2:
+        else:
             self.image = self.image_left
             screen.blit(self.image, self.rect)
 
@@ -91,7 +90,7 @@ class Missile(pygame.sprite.Sprite):
             for i in range(len(x_vals)):
                 if count>1:
                     count -=1
-                    pygame.draw.circle(screen, (255, 50, 0), (int(x_vals[i]+5 ), int(y_vals[i]+20)), 3)
+                    pygame.draw.circle(screen, (0,0,255), (int(x_vals[i]+5 ), int(y_vals[i]+20)), 3)
 
     def tirer(self,screen,joueur):
         if self.tir_active:
