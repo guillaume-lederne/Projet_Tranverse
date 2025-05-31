@@ -58,7 +58,7 @@ while running:
     game.player1.compt_coeur()
     game.player2.compt_coeur()
 
-    if game.pressed.get(pygame.K_RIGHT)and game.playerJoueur.rect.x<960 :
+    if game.pressed.get(pygame.K_RIGHT)and game.playerJoueur.rect.x<960 and game.playerJoueur.essence>0 :
         game.playerJoueur.move_right()
         game.playerJoueur.move_up()
         game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-60+game.terrain.offset)[1])
@@ -66,7 +66,7 @@ while running:
 #        if game.playerJoueur.essence <= 0:
 #            game.tour()
 
-    elif game.pressed.get(pygame.K_LEFT) and game.playerJoueur.rect.x>0 :
+    elif game.pressed.get(pygame.K_LEFT) and game.playerJoueur.rect.x>0 and game.playerJoueur.essence>0:
         game.playerJoueur.move_left()
         game.playerJoueur.move_up()
         game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-50+game.terrain.offset)[1])

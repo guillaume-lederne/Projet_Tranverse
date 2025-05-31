@@ -1,6 +1,6 @@
 import pygame
 import math
-
+import time
 
 
 class Missile(pygame.sprite.Sprite):
@@ -23,6 +23,7 @@ class Missile(pygame.sprite.Sprite):
         self.rect=self.image.get_rect()
         self.dx = 0
         self.dy = 0
+        self.shoot_delay = 0
 
 
     def trajectoire(self,v, angle_deg,hauteur):
@@ -67,7 +68,8 @@ class Missile(pygame.sprite.Sprite):
             self.vitesse = min(100, self.vitesse+1)
         if keys[pygame.K_DOWN]:
             self.vitesse = max(1, self.vitesse - 1)
-        if keys[pygame.K_SPACE] and not self.tir_active:
+        if keys[pygame.K_SPACE] and not self.tir_active and time.time() > self.shoot_delay:
+            self.shoot_delay = time.time() + 1
             self.tir_active = True
             self.missile_x = self.char_x
             self.rect.x = self.missile_x

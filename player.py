@@ -76,3 +76,5 @@ class Player(p.sprite.Sprite):
             self.essence -= (1 - angle_conso) * 3
         elif sens == 2:
             self.essence -= (1 + angle_conso) * 3
+        if self.essence < 0:
+            self.essence = 0
