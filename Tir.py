@@ -18,8 +18,11 @@ class Missile(pygame.sprite.Sprite):
         self.x_vals, self.y_vals = [], []
         self.tir_active = False
         self.missile_x, self.missile_y = -1, -1
-        self.image=pygame.image.load('image/balle_tank_gauche.png')
-        self.image = pygame.transform.scale(self.image, (50, 50))
+        self.image_right=pygame.image.load('image/balle_tank_gauche.png')
+        self.image_right = pygame.transform.scale(self.image_right, (50, 50))
+        self.image_left=pygame.image.load('image/balle_tank_droit.png')
+        self.image_left = pygame.transform.scale(self.image_left, (50, 50))
+        self.image = self.image_right
         self.rect=self.image.get_rect()
         self.dx = 0
         self.dy = 0
@@ -27,10 +30,8 @@ class Missile(pygame.sprite.Sprite):
 
 
     def trajectoire(self,v, angle_deg,hauteur):
-        # Convertir l'angle en radians
         angle_rad = math.radians(angle_deg)
 
-        # Liste des coordonnées du tir
         x_vals = []
         y_vals = []
 
@@ -48,8 +49,13 @@ class Missile(pygame.sprite.Sprite):
 
         return x_vals, y_vals
 
-    def dessiner_missile(self,screen):
-        screen.blit(self.image, self.rect)
+    def dessiner_missile(self,screen,joueur):
+        if joueur == 1:
+            self.image = self.image_right
+            screen.blit(self.image, self.rect)
+        if joueur == 2:
+            self.image = self.image_left
+            screen.blit(self.image, self.rect)
 
     def dessiner_data(self,screen):
         font = pygame.font.SysFont(None, 30)
@@ -77,7 +83,6 @@ class Missile(pygame.sprite.Sprite):
             self.missile_y = self.char_y  # Réinitialiser la position du missile
             self.rect.y = self.missile_y
             self.x_vals, self.y_vals = self.trajectoire(self.vitesse, self.angle,hauteur)
-            #print(f"Tir effectué avec angle {self.angle:.2f}° et vitesse {self.vitesse} m/s")
 
     def afficher_trajectoire(self,screen,hauteur):
         count = 50
@@ -86,9 +91,9 @@ class Missile(pygame.sprite.Sprite):
             for i in range(len(x_vals)):
                 if count>1:
                     count -=1
-                    pygame.draw.circle(screen, (0, 0, 255), (int(x_vals[i]+5 ), int(y_vals[i]+20)), 3)
+                    pygame.draw.circle(screen, (255, 50, 0), (int(x_vals[i]+5 ), int(y_vals[i]+20)), 3)
 
-    def tirer(self,hauteur, largeur,screen):
+    def tirer(self,screen,joueur):
         if self.tir_active:
             if len(self.x_vals) > 0:
                 self.missile_x += (self.x_vals[0] - self.missile_x)
@@ -96,7 +101,7 @@ class Missile(pygame.sprite.Sprite):
                 self.rect.x = self.missile_x
                 self.rect.y = self.missile_y
 
-                self.dessiner_missile(screen)
+                self.dessiner_missile(screen,joueur)
 
                 self.x_vals.pop(0)
                 self.y_vals.pop(0)

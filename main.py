@@ -63,21 +63,19 @@ while running:
         game.playerJoueur.move_up()
         game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-60+game.terrain.offset)[1])
         game.playerJoueur.conso(1)
-#        if game.playerJoueur.essence <= 0:
-#            game.tour()
 
     elif game.pressed.get(pygame.K_LEFT) and game.playerJoueur.rect.x>0 and game.playerJoueur.essence>0:
         game.playerJoueur.move_left()
         game.playerJoueur.move_up()
         game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-50+game.terrain.offset)[1])
         game.playerJoueur.conso(2)
-#        if game.playerJoueur.essence <= 0:
-#           game.tour()
+
     game.missile.char_x = game.playerJoueur.rect.x+50
     game.missile.char_y = game.playerJoueur.rect.y
     game.missile.update(game.hauteur)
     game.missile.afficher_trajectoire(screen,game.hauteur)
-    game.missile.tirer(game.hauteur,game.largeur,screen)
+    game.missile.tirer(screen, game.tour_du_joueur)
+
     if game.tour_du_joueur == 1 and game.missile.tir_active:
         if game.collision(game.player2.rect, game.missile.rect,screen):
             game.player2.health -= 20
@@ -95,6 +93,10 @@ while running:
         game.time_start = t.time()
         if not game.missile.tir_active:
             game.tour()
+
+    if game.explosion_timer > t.time():
+        screen.blit(game.img_explosion, game.img_rect)
+
     text_essence_1 = police1.render(f"Essence : {round(game.player1.essence/10,1)} L", True,(0,0,0))
     text_essence_2 = police1.render(f"Essence : {round(game.player2.essence / 10, 1)} L", True, (0, 0, 0))
     text_timer = police1.render(f"Il vous reste : {round(game.time_start-t.time()+game.timer, 1)} s pour tirer", True, (255, 0, 0))
