@@ -13,8 +13,8 @@ def affichage_icone():
     selection_window.geometry("400x300")
 
     # Tank image paths
-    tank1_path = "image/tank_rouge.png"
-    tank2_path = "image/tank_vert.png."
+    tank1_path = "image/tank.png"
+    tank2_path = "image/tank2.png."
 
     taille_image=(100,100)
     # Load and display Tank 1

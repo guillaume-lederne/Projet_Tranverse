@@ -22,6 +22,8 @@ class Game:
         self.fonction=self.terrain.fonction
         self.tour_du_joueur = 1
 
+        self.a_gagne_j1=False
+        self.a_gagne_j2=False
         self.img_explosion = pygame.image.load('image/Explosion_1.png')
         self.img_explosion = p.transform.scale(self.img_explosion, (90,90))
         self.img_rect = self.img_explosion.get_rect()
@@ -33,9 +35,11 @@ class Game:
         if self.playerJoueur == self.player1:
             self.tour_du_joueur = 2
             self.playerJoueur = self.player2
+            self.missile.vitesse=self.missile.vitesse_initiale
         elif self.playerJoueur == self.player2:
             self.tour_du_joueur = 1
             self.playerJoueur = self.player1
+            self.missile.vitesse = self.missile.vitesse_initiale
 
     def collision(self,rectA, rectB,screen):
         if rectB.x + 10 < rectA.x:

@@ -11,6 +11,7 @@ class Player(p.sprite.Sprite):
         self.max_essence = 1000
         self.essence = 1000
         self.velocity = 1
+        self.joueur = joueur
         if joueur == 1:
             self.image = p.image.load('image/tank.png')
             self.coeur_image = p.image.load('image/5coeurs.png')
@@ -38,16 +39,32 @@ class Player(p.sprite.Sprite):
     def compt_coeur(self):
         if self.health <= 80 and self.health > 60:
             self.coeur_image=p.image.load('image/4coeurs.png')
-            self.coeur_image = p.transform.scale(self.coeur_image, (120, 35))
+            self.coeur_image = p.transform.scale(self.coeur_image, (112, 35))
+            if self.joueur == 2:
+                self.coeur_rect.x = 956
+            if self.joueur == 1:
+                self.coeur_rect.x = 10
         elif self.health <= 60 and self.health > 40:
             self.coeur_image=p.image.load('image/3coeurs.png')
-            self.coeur_image = p.transform.scale(self.coeur_image, (90, 35))
+            self.coeur_image = p.transform.scale(self.coeur_image, (84, 35))
+            if self.joueur == 2:
+                self.coeur_rect.x = 984
+            if self.joueur == 1:
+                self.coeur_rect.x = 10
         elif self.health <= 40 and self.health > 20:
             self.coeur_image=p.image.load('image/2coeurs.png')
             self.coeur_image = p.transform.scale(self.coeur_image, (60, 35))
+            if self.joueur == 2:
+                self.coeur_rect.x = 1010
+            if self.joueur == 1:
+                self.coeur_rect.x = 10
         elif self.health <= 20 and self.health > 0:
             self.coeur_image=p.image.load('image/coeur.png')
             self.coeur_image = p.transform.scale(self.coeur_image, (32, 35))
+            if self.joueur == 2:
+                self.coeur_rect.x = 1038
+            if self.joueur == 1:
+                self.coeur_rect.x = 10
 
 
 
