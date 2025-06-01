@@ -4,9 +4,6 @@ import game_file
 import random
 import time as t
 
-
-
-
 def lancer_jeu():
     p.init()
     p.display.set_caption('WWIII')
@@ -67,16 +64,13 @@ def lancer_jeu():
             game.playerJoueur.move_up()
             game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-60+game.terrain.offset)[1])
             game.playerJoueur.conso(1)
-    #        if game.playerJoueur.essence <= 0:
-    #            game.tour()
 
         elif game.pressed.get(pygame.K_LEFT) and game.playerJoueur.rect.x>0 and game.playerJoueur.essence>0:
             game.playerJoueur.move_left()
             game.playerJoueur.move_up()
             game.playerJoueur.rotate(fonction(game.playerJoueur.rect.x-50+game.terrain.offset)[1])
             game.playerJoueur.conso(2)
-    #        if game.playerJoueur.essence <= 0:
-    #           game.tour()
+
         game.missile.char_x = game.playerJoueur.rect.x+50
         game.missile.char_y = game.playerJoueur.rect.y
         game.missile.update(game.hauteur)
@@ -134,6 +128,11 @@ def lancer_jeu():
             game.missile.tir_active = False
             game.time_start = t.time()
             game.tour()
+
+
+      if game.explosion_timer > t.time():
+          screen.blit(game.img_explosion, game.img_rect)
+
 
         if t.time() > game.time_start + game.timer:
             game.time_start = t.time()
