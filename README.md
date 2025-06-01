@@ -22,11 +22,12 @@ Tkinter : interface des menus
 
 Contrôles :
 
-Se déplacer	Flèche gauche / droite
-Régler la puissance	Flèche haut / bas
-Tirer Espace
+Se déplacer	: Flèche gauche / droite
+Régler la puissance	: Flèche haut / bas
+Tirer : Espace
 
 Équipe de développement :
+
 Clément : génération des terrains
 
 Manon & Ulysse : physique du jeu
