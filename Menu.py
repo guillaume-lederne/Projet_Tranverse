@@ -1,6 +1,4 @@
 import tkinter as tk
-import pygame as p
-import game_file
 from PIL import Image, ImageTk
 from Options import affichage_icone
 from main import lancer_jeu
@@ -36,7 +34,8 @@ def lancer_menu():
 
     btn_jouer = tk.Button(root, image=btn_jouer_photo, command=lancer_jeu, borderwidth=-10)
     btn_jouer.place(x=355, y=265)
-
+    root.mainloop()
+"""
     btn_option_image_path = "image/options.jpg"
     try:
         btn_option_image = Image.open(btn_option_image_path)
@@ -50,7 +49,7 @@ def lancer_menu():
 
     btn_option.place(x=365, y=433)
 
-    root.mainloop()
+"""
 
 
 def ouvrir_options():

@@ -75,7 +75,7 @@ def lancer_jeu():
         game.missile.char_y = game.playerJoueur.rect.y
         game.missile.update(game.hauteur)
         game.missile.afficher_trajectoire(screen,game.hauteur)
-        game.missile.tirer(game.hauteur,game.largeur,screen)
+        game.missile.tirer(screen,game.tour_du_joueur)
         if game.tour_du_joueur == 1 and game.missile.tir_active:
             if game.collision(game.player2.rect, game.missile.rect,screen):
                 game.player2.health -= 20
@@ -129,9 +129,8 @@ def lancer_jeu():
             game.time_start = t.time()
             game.tour()
 
-
-      if game.explosion_timer > t.time():
-          screen.blit(game.img_explosion, game.img_rect)
+        if game.explosion_timer > t.time():
+            screen.blit(game.img_explosion, game.img_rect)
 
 
         if t.time() > game.time_start + game.timer:
