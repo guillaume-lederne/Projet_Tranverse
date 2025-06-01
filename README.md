@@ -30,11 +30,11 @@ Tirer : Espace
 
 Clément : génération des terrains
 
-Manon & Ulysse : physique du jeu
+Manon & Ulysse : physique du jeu et interface
 
 Hugo & Ulysse : trajectoire de tir
 
-Guillaume : menu et interface
+Guillaume : menu
 
 Capture d'écran :
 ![img_1.png](img_1.png)
