@@ -26,7 +26,7 @@ Se déplacer	: Flèche gauche / droite
 Régler la puissance	: Flèche haut / bas
 Tirer : Espace
 
-## Attention pour accéder au menu de départ il faut lancer le jeu depuis le fichier Menu.py
+### Attention pour accéder au menu de départ il faut lancer le jeu depuis le fichier Menu.py
 
 Équipe de développement :
 
