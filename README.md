@@ -1,4 +1,4 @@
-WWIII est un jeu de combat stratégique en 2D, où deux tanks s’affrontent dans un environnement destructible. Le jeu fonctionne au tour par tour et combine déplacement limité, tir de précision et gestion de la puissance de feu.
+Tank Y est un jeu de combat stratégique en 2D, où deux tanks s’affrontent dans un environnement destructible. Le jeu fonctionne au tour par tour et combine déplacement limité, tir de précision et gestion de la puissance de feu.
 
 Gameplay
 Deux joueurs s’affrontent chacun leur tour.
@@ -26,6 +26,8 @@ Se déplacer	: Flèche gauche / droite
 Régler la puissance	: Flèche haut / bas
 Tirer : Espace
 
+## Attention pour accéder au menu de départ il faut lancer le jeu depuis le fichier Menu.py
+
 Équipe de développement :
 
 Clément : génération des terrains
@@ -41,3 +43,5 @@ Capture d'écran :
 ![img_2.png](img_2.png)
 ![img.png](img.png)
 ![img_3.png](img_3.png)
+
+
