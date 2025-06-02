@@ -6,7 +6,7 @@ import time as t
 
 def lancer_jeu():
     p.init()
-    p.display.set_caption('WWIII')
+    p.display.set_caption('Tank Y')
 
     game = game_file.Game()
     fenetre = p.display.set_mode((game.largeur, game.hauteur))
@@ -124,7 +124,7 @@ def lancer_jeu():
                                 elif event.key == pygame.K_ESCAPE:
                                     pygame.quit()
                                     exit()
-        if (game.missile.rect.y >= game.hauteur or game.missile.rect.x > game.largeur or game.missile.rect.x < 0 or game.missile.rect.y > game.missile.terrain(game.missile.rect.x)[0])and game.missile.tir_active == True:
+        if (game.missile.rect.y >= game.hauteur or game.missile.rect.x > game.largeur or game.missile.rect.x < 0 or game.missile.rect.y > game.missile.terrain(game.missile.rect.x)[0]) and game.missile.tir_active == True:
             game.missile.tir_active = False
             game.time_start = t.time()
             game.tour()

@@ -9,7 +9,7 @@ import time as t
 
 class Game:
     def __init__(self):
-        self.timer = 9.9
+        self.timer = 5
         self.time_start = t.time()
         self.largeur = 1080
         self.hauteur = 720

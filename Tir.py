@@ -30,6 +30,7 @@ class Missile(pygame.sprite.Sprite):
 
 
     def trajectoire(self,v, angle_deg,hauteur):
+        calc_trajectoire = True
         angle_rad = math.radians(angle_deg)
 
         x_vals = []
@@ -38,16 +39,17 @@ class Missile(pygame.sprite.Sprite):
         t = 0  # Temps initial
         dt = 0.1  # Pas de temps
 
-        while True:
+        while calc_trajectoire:
             x = v * math.cos(angle_rad) * t
             y = v * math.sin(angle_rad) * t - 0.5 * self.gravite * t ** 2
-            if y < -hauteur : #valeur arbitraire pour que la trajectoire calcul un point en plus et évite les problèmes de sortie d'écran
-                break # Arrêter lorsque le projectile touche le sol
-            x_vals.append(x+self.char_x)
-            y_vals.append(self.char_y - y)  # Inverser l'axe y pour l'affichage (haut/bas)
-            t += dt
-
+            if not y < -hauteur :
+                x_vals.append(x+self.char_x)
+                y_vals.append(self.char_y - y)  # Inverser l'axe y pour l'affichage (haut/bas)
+                t += dt
+            else :
+                calc_trajectoire = False
         return x_vals, y_vals
+
     def dessiner_missile(self,screen,joueur):
         if self.char_x < self.missile_x:
             self.image = self.image_right

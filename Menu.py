@@ -51,7 +51,7 @@ def lancer_menu():
 
 """
 
-
+    
 def ouvrir_options():
     print("Ouverture des options...")
     affichage_icone()
