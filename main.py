@@ -6,7 +6,7 @@ import time as t
 
 def lancer_jeu():
     p.init()
-    p.display.set_caption('WWIII')
+    p.display.set_caption('Tank Y')
 
     game = game_file.Game()
     fenetre = p.display.set_mode((game.largeur, game.hauteur))
