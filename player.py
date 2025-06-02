@@ -81,7 +81,7 @@ class Player(p.sprite.Sprite):
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def move_up(self):
-        self.rect.y = self.terrain(self.rect.x)[0]-45
+        self.rect.y = self.terrain(self.rect.x)[0]-50
 
     def conso(self,sens):
         angle_conso = self.angle
