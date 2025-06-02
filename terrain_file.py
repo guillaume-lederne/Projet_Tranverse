@@ -39,7 +39,6 @@ class Terrain:
         def f6(x):
             return self.hauteur_terrain + 60*m.cos(x*0.004)+14*m.sin(x/52),-60*0.004*m.sin(x*0.004)+14/52*m.cos(x/52)
         self.fonction=random.choice([f1,f2,f4,f5,f6])
-        print(self.fonction)
         if self.fonction==f2:
             self.offset=57
         if self.fonction==f5:
