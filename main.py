@@ -141,9 +141,9 @@ def lancer_jeu():
         text_essence_2 = police1.render(f"Essence : {round(game.player2.essence / 10, 1)} L", True, (0, 0, 0))
         text_timer = police1.render(f"Il vous reste : {round(game.time_start-t.time()+game.timer, 1)} s pour tirer", True, (255, 0, 0))
         if game.tour_du_joueur == 1:
-            text_tour = police2.render(f"Tour du joueur {1}", True, (0, 0, 0))
+            text_tour = police2.render(f"Tour du joueur gris", True, (0, 0, 0))
         elif game.tour_du_joueur == 2:
-            text_tour = police2.render(f"Tour du joueur {2}", True, (0, 0, 0))
+            text_tour = police2.render(f"Tour du joueur rouge", True, (0, 0, 0))
         fenetre.blit(text_essence_1,(20,60))
         fenetre.blit(text_essence_2, (900, 60))
         fenetre.blit(text_tour, (430, 20))

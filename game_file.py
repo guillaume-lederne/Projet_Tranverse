@@ -1,5 +1,6 @@
 import pygame as p
 import pygame.image
+from random import randint
 
 import player
 import terrain_file
@@ -16,11 +17,14 @@ class Game:
         self.player1 = player.Player(1)
         self.player2 = player.Player(2)
         self.missile = Tir.Missile()
-        self.playerJoueur=self.player1
         self.pressed = {}
         self.terrain=terrain_file.Terrain()
         self.fonction=self.terrain.fonction
-        self.tour_du_joueur = 1
+        self.tour_du_joueur = randint(1,2)
+        if self.tour_du_joueur == 1:
+            self.playerJoueur = self.player1
+        else :
+            self.playerJoueur = self.player2
 
         self.a_gagne_j1=False
         self.a_gagne_j2=False

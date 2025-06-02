@@ -38,16 +38,13 @@ class Missile(pygame.sprite.Sprite):
 
         t = 0  # Temps initial
         dt = 0.1  # Pas de temps
-
-        while calc_trajectoire:
+        y = v * math.sin(angle_rad) * t - 0.5 * self.gravite * t ** 2
+        while not y < -hauteur :
             x = v * math.cos(angle_rad) * t
             y = v * math.sin(angle_rad) * t - 0.5 * self.gravite * t ** 2
-            if not y < -hauteur :
-                x_vals.append(x+self.char_x)
-                y_vals.append(self.char_y - y)  # Inverser l'axe y pour l'affichage (haut/bas)
-                t += dt
-            else :
-                calc_trajectoire = False
+            x_vals.append(x+self.char_x)
+            y_vals.append(self.char_y - y)  # Inverser l'axe y pour l'affichage (haut/bas)
+            t += dt
         return x_vals, y_vals
 
     def dessiner_missile(self,screen,joueur):
