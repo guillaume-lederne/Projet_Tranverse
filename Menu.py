@@ -36,7 +36,7 @@ def lancer_menu():
     btn_jouer.place(x=355, y=265)
     root.mainloop()
 
-
+    
 def ouvrir_options():
     print("Ouverture des options...")
     affichage_icone()
